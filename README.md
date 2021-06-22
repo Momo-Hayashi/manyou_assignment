@@ -10,9 +10,9 @@
 ### Tasks
 |  Column  |  Data  |
 | ---- | ---- |
-|  title |  string  |
-|  content  |  text  |
-| status  |  string  |
+|  name |  string  |
+|  detail  |  text  |
+|  status  |  string  |
 |  priority |  integer  |
 |  expire_on  |  date  |
 
