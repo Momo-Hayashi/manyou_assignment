@@ -1,24 +1,29 @@
-# README
+# テーブルスキーマ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Users
+|  Column  |  Data  |
+| ---- | ---- |
+|  name  |  string  |
+|  email  |  string  |
+|  pasdword_digest  |  string  |
+  
+### Tasks
+|  Column  |  Data  |
+| ---- | ---- |
+|  title |  string  |
+|  content  |  text  |
+| status  |  string  |
+|  priority |  integer  |
+|  expire_on  |  date  |
 
-Things you may want to cover:
+### Label_lists
+|  Column  |  Data  |
+| ---- | ---- |
+| tasks_id(FK) |    |
+| labels_id(FK) |  |
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Labels
+|  Column  |  Data  |
+| ---- | ---- |
+| label_name |  string  |
