@@ -44,6 +44,6 @@ bundle lock --add-platform x86_64-linux
 
 git add .  
 git commit -m 'fix'  
-git push heroku master or git push heroku ブランチ名:master  
+git push heroku master もしくは git push heroku ブランチ名:master  
 
 heroku run rails db:migrate  
