@@ -12,11 +12,11 @@ RSpec.describe 'タスクモデル機能', type: :model do
         task = Task.new(name: '失敗テスト', detail: '')
         expect(task).not_to be_valid
       end
-      end
     end
     context 'タスクのタイトルと詳細に内容が記載されている場合' do
       it 'バリデーションが通る' do
-        # ここに内容を記載する
+        task = Task.new(name: '成功テスト', detail: '成功')
+        expect(task).to be_valid
       end
     end
   end
