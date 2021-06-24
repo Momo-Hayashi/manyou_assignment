@@ -10,9 +10,10 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit new_task_path
         fill_in 'task_name', with: 'make a test'
         fill_in 'task_detail', with: 'test_test_test'
+        fill_in 'task_expire_on', with: '002021/10/08'
         click_on '登録する'
         visit tasks_path
-        expect(page).to have_content 'test_test_test'
+        expect(page).to have_content 'test_test_test' && '2021-10-08'
       end
     end
   end
@@ -29,6 +30,14 @@ RSpec.describe 'タスク管理機能', type: :system do
         task_list = all('.task_row')
         expect(task_list[0]).to have_content 'task2'
         expect(task_list[1]).to have_content 'task1'
+      end
+    end
+    context ' 終了期限でソートする をクリックした場合' do
+      it '終了期限が降順（遠い期限のものが上）に表示される' do
+        click_on '終了期限でソートする'
+        task_list = all('.task_row')
+        expect(task_list[0]).to have_content '2021-08-16'
+        expect(task_list[1]).to have_content '2021-07-01'
       end
     end
   end
