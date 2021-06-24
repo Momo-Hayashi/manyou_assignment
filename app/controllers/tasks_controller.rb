@@ -4,11 +4,11 @@ class TasksController < ApplicationController
   def index
     if params[:name_search].present? || params[:status_search].present?
       if params[:name_search].present? && params[:status_search].present?
-        @tasks = Task.where('name LIKE ?', "%#{params[:name_search]}%")
+        @tasks = Task.by_name(params[:name_search]).by_status(params[:status_search])
       elsif params[:name_search].present?
-        @tasks = Task.where('name LIKE ?', "%#{params[:name_search]}%")
+        @tasks = Task.by_name(params[:name_search])
       elsif params[:status_search].present?
-        @tasks = Task.where(status: params[:status_search])
+        @tasks = Task.by_status(params[:status_search])
       end
     elsif params[:sort_expired]
       @tasks = Task.all.order(expire_on: :desc)
