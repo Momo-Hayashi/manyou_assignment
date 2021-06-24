@@ -1,5 +1,6 @@
 <h1>Task detail!</h1>
 <p>タスク名：<%= @task.name %></p>
 <p>詳細：<%= @task.detail %></p>
+<p>完了期限：<%= @task.expire_on %></p>
 <%= link_to 'edit', edit_task_path %>
 <%= link_to 'Back to Home', tasks_path %>

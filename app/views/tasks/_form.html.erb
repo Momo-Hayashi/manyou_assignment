@@ -18,5 +18,9 @@
     <%= f.label :詳細 %>
     <%= f.text_field :detail %>
   </div>
+  <div class="task_deadline">
+    <%= f.label :完了期限 %>
+    <%= f.date_field :expire_on %>
+  </div>
   <%= f.submit %>
 <% end %>
