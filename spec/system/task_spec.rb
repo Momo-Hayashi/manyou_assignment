@@ -11,9 +11,10 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in 'task_name', with: 'make a test'
         fill_in 'task_detail', with: 'test_test_test'
         fill_in 'task_expire_on', with: '002021/10/08'
+        select '着手中', from: 'task[status]'
         click_on '登録する'
         visit tasks_path
-        expect(page).to have_content 'test_test_test' && '2021-10-08'
+        expect(page).to have_content 'test_test_test' && '2021-10-08' && '着手中'
       end
     end
   end
@@ -38,6 +39,28 @@ RSpec.describe 'タスク管理機能', type: :system do
         task_list = all('.task_row')
         expect(task_list[0]).to have_content '2021-08-16'
         expect(task_list[1]).to have_content '2021-07-01'
+      end
+    end
+    context 'タスク名で検索した場合' do
+      it 'タスク名が含まれるタスク一覧が表示される' do
+        fill_in 'name_search', with: 'task1'
+        click_on 'Search'
+        expect(page).to have_content 'test1'
+      end
+    end
+    context 'ステータスで検索した場合' do
+      it 'ステータスに一致したタスク一覧が表示される' do
+        select '完了', from: 'status_search'
+        click_on 'Search'
+        expect(page).to have_content 'task2'
+      end
+    end
+    context 'タスク名とステータス両方で検索した場合' do
+      it 'タスク名を含み、ステータスが合致するタスク一覧が表示される' do
+        fill_in 'name_search', with: 'task'
+        select '完了', from: 'status_search'
+        click_on 'Search'
+        expect(page).to have_content 'test2'
       end
     end
   end
