@@ -3,15 +3,17 @@
 
 <table>
   <tr>
-    <th>タスク名</th>
-    <th>詳細</th>
-    <th>完了期限</th>
+    <th>Name</th>
+    <th>Detail</th>
+    <th>Deadline</th>
+    <th>Status</th>
   </tr>
   <% @task.each do |task| %>
     <tr class ="task_row">
       <td><%= task.name %></td>
       <td><%= task.detail %></td>
       <td><%= task.expire_on %></td>
+      <td><%= task.status %></td>
       <td><%= link_to 'detail', task_path(task.id) %></td>
       <td><%= link_to 'edit', edit_task_path(task.id) %></td>
       <td><%= link_to 'delete', task_path(task.id), method: :delete, data: { confirm: 'Are you sure?'} %></td>

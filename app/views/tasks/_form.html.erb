@@ -11,16 +11,20 @@
   <% end %>
 
   <div class="task_name">
-    <%= f.label :タスク名 %>
+    <%= f.label :Task %>
     <%= f.text_field :name %>
   </div>
   <div class="task_detail">
-    <%= f.label :詳細 %>
+    <%= f.label :Detail %>
     <%= f.text_field :detail %>
   </div>
   <div class="task_deadline">
-    <%= f.label :完了期限 %>
+    <%= f.label :Deadline %>
     <%= f.date_field :expire_on %>
+  </div>
+  <div class="task_status">
+    <%= f.label :Status %>
+    <%= f.select :status, Task.statuses.keys.to_a {} %>
   </div>
   <%= f.submit %>
 <% end %>
