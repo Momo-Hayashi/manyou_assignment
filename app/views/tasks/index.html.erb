@@ -19,4 +19,5 @@
   <% end %>
 </table>
 
-<%= link_to 'タスクを作成する', new_task_path %>
+<p><%= link_to 'タスクを作成する', new_task_path %></p>
+<p><%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %></p>
