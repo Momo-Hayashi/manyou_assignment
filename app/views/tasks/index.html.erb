@@ -1,5 +1,19 @@
 <h1>Reminder</h1>
 <p><%= notice %></p>
+<%= form_with(model:@task, local: true, url: tasks_path, method: 'get') do |f| %>
+  <%= f.label :Name %>
+  <%= f.text_field :name_search %>
+  <%= f.label :Status %>
+  <%= f.select :status_search, Task.statuses.keys.to_a {}, include_blank: true %>
+  <%= f.submit 'Search' %>
+<% end %>
+
+<br>
+<div class="menu">
+  <%= link_to 'タスクを作成する', new_task_path %>
+  <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
+</div>
+<br>
 
 <table>
   <tr>
@@ -8,7 +22,7 @@
     <th>Deadline</th>
     <th>Status</th>
   </tr>
-  <% @task.each do |task| %>
+  <% @tasks.each do |task| %>
     <tr class ="task_row">
       <td><%= task.name %></td>
       <td><%= task.detail %></td>
@@ -20,6 +34,3 @@
     </tr>
   <% end %>
 </table>
-
-<p><%= link_to 'タスクを作成する', new_task_path %></p>
-<p><%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %></p>
