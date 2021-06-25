@@ -11,4 +11,10 @@ FactoryBot.define do
     expire_on { '002021/07/01' }
     status { '完了' }
   end
+  factory :third_task, class: Task do
+    name { 'task1' }
+    detail { 'test3' }
+    expire_on { '002021/07/01' }
+    status { '完了' }
+  end
 end

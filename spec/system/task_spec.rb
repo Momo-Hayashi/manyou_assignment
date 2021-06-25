@@ -41,6 +41,10 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(task_list[1]).to have_content '2021-07-01'
       end
     end
+  end
+
+  describe '検索機能' do
+    before { visit tasks_path }
     context 'タスク名で検索した場合' do
       it 'タスク名が含まれるタスク一覧が表示される' do
         fill_in 'name_search', with: 'task1'
