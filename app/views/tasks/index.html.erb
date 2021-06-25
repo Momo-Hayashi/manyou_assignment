@@ -8,7 +8,6 @@
   <%= f.submit 'Search' %>
 <% end %>
 
-<br>
 <div class="menu">
   <%= link_to 'Create new Task', new_task_path %>
   <%= link_to "Sort by Deadline", tasks_path(sort_expired: "true") %>
@@ -16,6 +15,7 @@
 </div>
 <br>
 
+<p><%= @tasks.count %>件のタスクが登録されています。</p>
 <table>
   <tr>
     <th>Name</th>

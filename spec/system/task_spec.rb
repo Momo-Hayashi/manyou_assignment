@@ -36,14 +36,16 @@ RSpec.describe 'タスク管理機能', type: :system do
     context 'Sort by Deadline をクリックした場合' do
       it '終了期限が降順（遠い期限のものが上）に表示される' do
         click_on 'Sort by Deadline'
-        task_list = all('.task_row')
-        expect(task_list[0]).to have_content '2021-08-16'
-        expect(task_list[1]).to have_content '2021-07-01'
+        deadline_list = all('.task_row')
+        expect(deadline_list[0]).to have_content '2021-08-16'
+        expect(deadline_list[1]).to have_content '2021-07-01'
       end
     end
     context 'Sort by Priority をクリックした場合' do
       it '優先順位が高いものから順番に表示される' do
-        click_on 'Sort by Priority'
+        # @wait.until do
+          click_on 'Sort by Priority'
+        # end
         priority_list = all('.task_row')
         expect(priority_list[0]).to have_content '高'
         expect(priority_list[1]).to have_content '中'
