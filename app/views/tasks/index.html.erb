@@ -8,33 +8,34 @@
   <%= f.submit 'Search' %>
 <% end %>
 
-<div class="menu">
-  <%= link_to 'Create new Task', new_task_path %>
-  <%= link_to "Sort by Deadline", tasks_path(sort_expired: "true") %>
-  <%= link_to "Sort by Priority", tasks_path(sort_priority: "true") %>
+<div>
+  <%= link_to 'Create new Task', new_task_path, class: 'btn btn-warning' %>
+  <%= link_to "Sort by Deadline", tasks_path(sort_expired: "true"), class: 'btn btn-info' %>
+  <%= link_to "Sort by Priority", tasks_path(sort_priority: "true"), class: 'btn btn-info' %>
 </div>
-<br>
 
-<p><%= @tasks.count %>件のタスクが登録されています。</p>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Detail</th>
-    <th>Deadline</th>
-    <th>Status</th>
-    <th>Priority</th>
-  </tr>
-  <% @tasks.each do |task| %>
-    <tr class ="task_row">
-      <td><%= task.name %></td>
-      <td><%= task.detail %></td>
-      <td><%= task.expire_on %></td>
-      <td><%= task.status %></td>
-      <td><%= task.priority %></td>
-      <td><%= link_to 'detail', task_path(task.id) %></td>
-      <td><%= link_to 'edit', edit_task_path(task.id) %></td>
-      <td><%= link_to 'delete', task_path(task.id), method: :delete, data: { confirm: 'Are you sure?'} %></td>
+<article>
+  <p><%= @tasks.count %>件のタスクが登録されています。</p>
+  <table class = "top_index">
+    <tr class = "top_menu">
+      <th>Name</th>
+      <th>Detail</th>
+      <th>Deadline</th>
+      <th>Status</th>
+      <th>Priority</th>
     </tr>
-  <% end %>
+    <% @tasks.each do |task| %>
+      <tr class ="task_row">
+        <td><%= task.name %></td>
+        <td><%= task.detail %></td>
+        <td><%= task.expire_on %></td>
+        <td><%= task.status %></td>
+        <td><%= task.priority %></td>
+        <td><%= link_to 'detail', task_path(task.id), class: 'btn btn-info' %></td>
+        <td><%= link_to 'edit', edit_task_path(task.id), class: 'btn btn-info' %></td>
+        <td><%= link_to 'delete', task_path(task.id), method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-info' %></td>
+      </tr>
+    <% end %>
+  </table>
   <%= paginate @tasks %>
-</table>
+</article>

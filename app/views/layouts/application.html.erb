@@ -10,6 +10,17 @@
   </head>
 
   <body>
+    <header>
+      <ul>
+        <li><p><strong>Task Reminder</strong></p></li>
+        <li><%= link_to 'Back to Home', tasks_path %></li>
+        <li><%= link_to 'Create new Task', new_task_path %></li>
+      </ul>
+    </header>
     <%= yield %>
+    <footer>
+      <p>運営会社MOOOOOM株式会社
+      <br>© 2021-2021 MOOOOOM Corp.</p>
+    </footer>
   </body>
 </html>
