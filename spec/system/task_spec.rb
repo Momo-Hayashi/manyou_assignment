@@ -44,9 +44,9 @@ RSpec.describe 'タスク管理機能', type: :system do
     context 'Sort by Priority をクリックした場合' do
       it '優先順位が高いものから順番に表示される' do
         click_on 'Sort by Priority'
-        task_list = all('.task_row')
-        expect(task_list[0]).to have_content '高'
-        expect(task_list[1]).to have_content '中'
+        priority_list = all('.task_row')
+        expect(priority_list[0]).to have_content '高'
+        expect(priority_list[1]).to have_content '中'
       end
     end
   end
