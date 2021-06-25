@@ -10,6 +10,16 @@
   </head>
 
   <body>
+    <header>
+      <ul>
+        <li><strong><%= link_to 'Task Reminder', tasks_path %></strong></li>
+        <li><strong><%= link_to 'Create new Task', new_task_path %></strong></li>
+      </ul>
+    </header>
     <%= yield %>
+    <footer>
+      <p>運営会社MOOOOOM株式会社
+      <br>© 2021-2021 MOOOOOM Corp.</p>
+    </footer>
   </body>
 </html>

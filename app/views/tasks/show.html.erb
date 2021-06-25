@@ -1,5 +1,10 @@
 <h1>Task detail!</h1>
-<p>タスク名：<%= @task.name %></p>
-<p>詳細：<%= @task.detail %></p>
-<%= link_to 'edit', edit_task_path %>
-<%= link_to 'Back to Home', tasks_path %>
+<article>
+  <p>Name：<%= @task.name %></p>
+  <p>Detail：<%= @task.detail %></p>
+  <p>Deadline：<%= @task.expire_on %></p>
+  <p>Status：<%= @task.status %></p>
+  <p>Priority：<%= @task.priority %></p>
+  <%= link_to 'edit', edit_task_path, class: 'btn btn-info' %>
+  <%= link_to 'Back to Home', tasks_path, class: 'btn btn-info' %>
+</article>

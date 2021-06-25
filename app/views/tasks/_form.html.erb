@@ -9,14 +9,27 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="task_name">
-    <%= f.label :タスク名 %>
-    <%= f.text_field :name %>
-  </div>
-  <div class="task_detail">
-    <%= f.label :詳細 %>
-    <%= f.text_field :detail %>
-  </div>
-  <%= f.submit %>
+  <article>
+    <div class="task_name">
+      <%= f.label :Task %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="task_detail">
+      <%= f.label :Detail %>
+      <%= f.text_field :detail %>
+    </div>
+    <div class="task_deadline">
+      <%= f.label :Deadline %>
+      <%= f.date_field :expire_on %>
+    </div>
+    <div class="task_status">
+      <%= f.label :Status %>
+      <%= f.select :status, Task.statuses.keys.to_a {} %>
+    </div>
+    <div class="task_priority">
+      <%= f.label :Priority %>
+      <%= f.select :priority, Task.priorities.keys.to_a {} %>
+    </div>
+    <%= f.submit %>
+  </article>  
 <% end %>
