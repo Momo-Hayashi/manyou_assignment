@@ -10,8 +10,9 @@
 
 <br>
 <div class="menu">
-  <%= link_to 'タスクを作成する', new_task_path %>
-  <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
+  <%= link_to 'Create new Task', new_task_path %>
+  <%= link_to "Sort by Deadline", tasks_path(sort_expired: "true") %>
+  <%= link_to "Sort by Priority", tasks_path(sort_priority: "true") %>
 </div>
 <br>
 
@@ -21,6 +22,7 @@
     <th>Detail</th>
     <th>Deadline</th>
     <th>Status</th>
+    <th>Priority</th>
   </tr>
   <% @tasks.each do |task| %>
     <tr class ="task_row">
@@ -28,6 +30,7 @@
       <td><%= task.detail %></td>
       <td><%= task.expire_on %></td>
       <td><%= task.status %></td>
+      <td><%= task.priority %></td>
       <td><%= link_to 'detail', task_path(task.id) %></td>
       <td><%= link_to 'edit', edit_task_path(task.id) %></td>
       <td><%= link_to 'delete', task_path(task.id), method: :delete, data: { confirm: 'Are you sure?'} %></td>

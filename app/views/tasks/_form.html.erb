@@ -26,6 +26,10 @@
     <%= f.label :Status %>
     <%= f.select :status, Task.statuses.keys.to_a {} %>
   </div>
+  <div class="task_priority">
+    <%= f.label :Priority %>
+    <%= f.select :priority, Task.priorities.keys.to_a {} %>
+  </div>
   <%= f.submit %>
 <% end %>
 <%= link_to 'Back to Home', tasks_path %>
