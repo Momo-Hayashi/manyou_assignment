@@ -1,36 +1,31 @@
 <h1>Reminder</h1>
-<p><%= notice %></p>
-<%= form_with local: true, url: tasks_path, method: 'get' do |f| %>
-  <%= f.label :Name %>
-  <%= f.text_field :name_search %>
-  <%= f.label :Status %>
-  <%= f.select :status_search, Task.statuses.keys.to_a {}, include_blank: true %>
-  <%= f.submit 'Search' %>
-<% end %>
-
-<div>
-  <%= link_to 'Create new Task', new_task_path, class: 'btn btn-warning' %>
-  <%= link_to "Sort by Deadline", tasks_path(sort_expired: "true"), class: 'btn btn-info' %>
-  <%= link_to "Sort by Priority", tasks_path(sort_priority: "true"), class: 'btn btn-info' %>
-</div>
-
 <article>
+  <p><%= notice %></p>
+  <%= form_with local: true, url: tasks_path, method: 'get' do |f| %>
+    <%= f.label :Name %>
+    <%= f.text_field :name_search %>
+    <%= f.label :Status %>
+    <%= f.select :status_search, Task.statuses.keys.to_a {}, include_blank: true %>
+    <%= f.submit 'Search' %>
+  <% end %>
+
+  <br>
   <p><%= @tasks.count %>件のタスクが登録されています。</p>
   <table class = "top_index">
     <tr class = "top_menu">
       <th>Name</th>
       <th>Detail</th>
-      <th>Deadline</th>
+      <th><%= link_to "Deadline▼", tasks_path(sort_expired: "true") %></th>
       <th>Status</th>
-      <th>Priority</th>
+      <th><%= link_to "Priority▼", tasks_path(sort_priority: "true") %></th>
     </tr>
     <% @tasks.each do |task| %>
       <tr class ="task_row">
-        <td><%= task.name %></td>
-        <td><%= task.detail %></td>
-        <td><%= task.expire_on %></td>
-        <td><%= task.status %></td>
-        <td><%= task.priority %></td>
+        <td class = "content"><%= task.name %></td>
+        <td class = "content"><%= task.detail %></td>
+        <td class = "content"><%= task.expire_on %></td>
+        <td class = "content"><%= task.status %></td>
+        <td class = "content"><%= task.priority %></td>
         <td><%= link_to 'detail', task_path(task.id), class: 'btn btn-info' %></td>
         <td><%= link_to 'edit', edit_task_path(task.id), class: 'btn btn-info' %></td>
         <td><%= link_to 'delete', task_path(task.id), method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-info' %></td>

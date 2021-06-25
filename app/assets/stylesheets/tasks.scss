@@ -3,8 +3,9 @@ html {
   min-height: 100%;
 }
 body{
-  background-color: #fef6e4;
-  // text-align: center;
+  background-color: #232946;
+  color: #eebbc3;
+  font-size: 16px;
 }
 header {
   width: 100%;
@@ -32,13 +33,16 @@ header ul:after {
   clear: both;
 }
 article {
-  padding: 20px 30px 70px 30px;
+  padding: 10px 20px 70px 20px;
 }
 .container-fluid{
   padding: 0;
 }
 .top_index td{
-  padding: 10px;
+  padding: 5px 10px 5px 0px;
+}
+.content {
+  width: 170px;
 }
 
 footer {

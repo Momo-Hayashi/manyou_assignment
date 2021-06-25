@@ -12,9 +12,8 @@
   <body>
     <header>
       <ul>
-        <li><p><strong>Task Reminder</strong></p></li>
-        <li><%= link_to 'Back to Home', tasks_path %></li>
-        <li><%= link_to 'Create new Task', new_task_path %></li>
+        <li><strong><%= link_to 'Task Reminder', tasks_path %></strong></li>
+        <li><strong><%= link_to 'Create new Task', new_task_path %></strong></li>
       </ul>
     </header>
     <%= yield %>
