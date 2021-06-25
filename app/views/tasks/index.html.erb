@@ -36,4 +36,5 @@
       <td><%= link_to 'delete', task_path(task.id), method: :delete, data: { confirm: 'Are you sure?'} %></td>
     </tr>
   <% end %>
+  <%= paginate @tasks %>
 </table>
