@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  # before_action :if_not_admin
+  before_action :if_not_admin
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   def index
     @users = User.all.includes(:tasks)
@@ -44,8 +44,8 @@ class Admin::UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
   end
 
-  # private
-  # def if_not_admin
-  #   redirect_to tasks_path, notice: 'Not authorised to access the page' unless current_user.admin?
-  # end
+  private
+  def if_not_admin
+    redirect_to tasks_path, notice: 'Not authorised to access the page' unless current_user.admin?
+  end
 end
