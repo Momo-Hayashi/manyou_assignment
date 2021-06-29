@@ -5,6 +5,10 @@
   <p>Deadline：<%= @task.expire_on %></p>
   <p>Status：<%= @task.status %></p>
   <p>Priority：<%= @task.priority %></p>
+  <% @task.labels.each do |label| %>
+    <p><%= label.label_name %></p>
+  <% end %>
+
   <%= link_to 'edit', edit_task_path, class: 'btn btn-info' %>
   <%= link_to 'Back to Home', tasks_path, class: 'btn btn-info' %>
 </article>

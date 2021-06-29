@@ -35,11 +35,9 @@ class TasksController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @task.update(task_params)
@@ -56,7 +54,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:name, :detail, :id, :expire_on, :status, :priority)
+    params.require(:task).permit(:name, :detail, :id, :expire_on, :status, :priority, { label_ids: [] } )
   end
 
   def set_task
