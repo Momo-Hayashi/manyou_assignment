@@ -5,6 +5,7 @@ FactoryBot.define do
     expire_on { '002021/08/16' }
     status { '着手中' }
     priority { '中' }
+    association :user
   end
   factory :second_task, class: Task do
     name { 'task2' }
@@ -12,11 +13,14 @@ FactoryBot.define do
     expire_on { '002021/07/01' }
     status { '完了' }
     priority { '高' }
+    association :user
   end
   factory :third_task, class: Task do
     name { 'task1' }
     detail { 'test3' }
     expire_on { '002021/07/01' }
     status { '完了' }
+    association :user
   end
+
 end

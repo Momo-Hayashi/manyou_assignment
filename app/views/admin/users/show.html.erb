@@ -3,7 +3,7 @@
 <article>
   <p>Name：<%= @user.name %></p>
   <p>Email：<%= @user.email %></p>
-  <p>User Authority：<%= @user.admin %></p>
+  <p>User Authority：<%= @user.admin == true ? 'Admin' : "User" %></p>
   <p>Tasks：<%= @user.tasks.count %>件のタスクがあります</p>
 
   <table class = "top_index">

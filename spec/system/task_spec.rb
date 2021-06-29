@@ -4,6 +4,53 @@ RSpec.describe 'タスク管理機能', type: :system do
 
   let!(:task) { FactoryBot.create(:task ) }
   let!(:second_task) { FactoryBot.create(:second_task ) }
+  let!(:user) {FactoryBot.create(:user )}
+  before do
+    visit new_user_path
+
+  end
+
+  describe 'ユーザ登録' do
+    context 'ユーザの新規登録ができる' do
+    end
+  end
+
+  describe 'セッション機能' do
+    context 'ログインができる' do
+    end
+
+    context '自分の詳細画面(マイページ)に飛べる' do
+    end
+
+    context '一般ユーザが他人の詳細画面に飛ぶ場合' do
+      it 'タスク一覧画面に遷移する' do
+      end
+    end
+
+    context 'ログアウトができる' do
+    end
+
+  end
+
+  describe '管理画面機能' do
+    context '管理ユーザは管理画面にアクセスできる' do
+    end
+
+    context '一般ユーザは管理画面にアクセスできない' do
+    end
+
+    context '管理ユーザはユーザの新規登録ができる' do
+    end
+
+    context '管理ユーザはユーザの詳細画面にアクセスできる' do
+    end
+
+    context '管理ユーザはユーザの編集画面からユーザを編集できる' do
+    end
+
+    context '管理ユーザはユーザの削除をできる' do
+    end
+  end
 
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
