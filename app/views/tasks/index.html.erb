@@ -1,6 +1,5 @@
 <h1>Reminder</h1>
 <article>
-  <p><%= notice %></p>
   <%= form_with local: true, url: tasks_path, method: 'get' do |f| %>
     <%= f.label :Name %>
     <%= f.text_field :name_search %>

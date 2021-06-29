@@ -12,11 +12,22 @@
   <body>
     <header>
       <ul>
-        <li><strong><%= link_to 'Task Reminder', tasks_path %></strong></li>
-        <li><strong><%= link_to 'Create new Task', new_task_path %></strong></li>
+        <% if logged_in?%>
+          <li><strong><%= link_to 'Task Reminder', tasks_path %></strong></li>
+          <li><strong><%= link_to 'Create new Task', new_task_path %></strong></li>
+          <li><%= link_to 'Profile', user_path(current_user.id) %></li>
+          <li><%= link_to 'LogOut', session_path(current_user.id), method: :delete %></li>
+        <% else %>
+          <li><%= link_to 'Sign Up', new_user_path %></li>
+          <li><%= link_to 'LogIn', new_session_path %></li>
+        <% end %>
       </ul>
     </header>
+    <% flash.each do |key, value| %>
+      <h3><strong><%= content_tag(:div, value, class: "#{key}") %></strong></h3>
+    <% end %>
     <%= yield %>
+    <div class="space_for_footer"></div>
     <footer>
       <p>運営会社MOOOOOM株式会社
       <br>© 2021-2021 MOOOOOM Corp.</p>

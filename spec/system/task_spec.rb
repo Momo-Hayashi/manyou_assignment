@@ -1,9 +1,16 @@
 require 'rails_helper'
-
 RSpec.describe 'タスク管理機能', type: :system do
 
-  let!(:task) { FactoryBot.create(:task ) }
-  let!(:second_task) { FactoryBot.create(:second_task ) }
+  let!(:user) {FactoryBot.create(:user) }
+  let!(:task) { FactoryBot.create(:task, user: user ) }
+  let!(:second_task) { FactoryBot.create(:second_task, user: user ) }
+
+  before do
+    visit sessions_new_path
+    fill_in 'session_email', with: 'user@user.com'
+    fill_in 'session_password', with: '11111111'
+    find(:xpath, '/html/body/article/form/p[5]/input').click
+  end
 
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
@@ -15,7 +22,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         select '着手中', from: 'task[status]'
         click_on '登録する'
         visit tasks_path
-        expect(page).to have_content 'test_test_test' && '2021-10-08' && '着手中'
+        expect(page).to have_content('test_test_test').and have_content('2021-10-08').and have_content('着手中')
       end
     end
   end

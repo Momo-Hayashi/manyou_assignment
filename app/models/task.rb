@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
+  belongs_to :user
   validates :name, presence: true
   validates :detail, presence: true
   enum status: {"---":0, 未着手:1, 着手中:2, 完了:3 }

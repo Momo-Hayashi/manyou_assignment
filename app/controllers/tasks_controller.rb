@@ -1,22 +1,25 @@
 class TasksController < ApplicationController
+  # skip_before_action :login_required, only [:]
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
+    @tasks = current_user.tasks
     if params[:name_search].present? || params[:status_search].present?
       if params[:name_search].present? && params[:status_search].present?
-        @tasks = Task.by_name(params[:name_search]).by_status(params[:status_search]).page(params[:page]).per(5)
+        @tasks = @tasks.by_name(params[:name_search]).by_status(params[:status_search])
       elsif params[:name_search].present?
-        @tasks = Task.by_name(params[:name_search]).page(params[:page]).per(5)
+        @tasks = @tasks.by_name(params[:name_search])
       elsif params[:status_search].present?
-        @tasks = Task.by_status(params[:status_search]).page(params[:page]).per(5)
+        @tasks = @tasks.by_status(params[:status_search])
       end
     elsif params[:sort_expired]
-      @tasks = Task.page(params[:page]).per(5).order(expire_on: :desc)
+      @tasks = @tasks.order(expire_on: :desc)
     elsif params[:sort_priority]
-      @tasks = Task.page(params[:page]).per(5).order(priority: :asc)
+      @tasks = @tasks.order(priority: :asc)
     else
-      @tasks = Task.page(params[:page]).per(5).order(created_at: :desc)
+      @tasks = @tasks.order(created_at: :desc)
     end
+    @tasks = @tasks.page(params[:page]).per(5)
   end
 
   def new
@@ -24,7 +27,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
       redirect_to tasks_path, notice: "Taskを作成しました！"
     else
