@@ -31,7 +31,7 @@
         <% task.labels.each do |label| %>
           <td><%= label.label_name %></td>
         <% end %>
-        <td class = "content"><%= task.labels.pluck(:label_name) %></td>
+        <td><%= task.labels.pluck(:label_name) %></td>
         <td><%= link_to 'detail', task_path(task.id), class: 'btn btn-info' %></td>
         <td><%= link_to 'edit', edit_task_path(task.id), class: 'btn btn-info' %></td>
         <td><%= link_to 'delete', task_path(task.id), method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-info' %></td>
