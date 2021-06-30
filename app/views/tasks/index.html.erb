@@ -6,12 +6,11 @@
     <%= f.label :Status %>
     <%= f.select :status_search, Task.statuses.keys.to_a {}, include_blank: true %>
     <%= f.label :'Label Name' %>
-    <%= f.select :label_id, Label.pluck(:label_name, :id), include_blank: true %>
+    <%= f.select :label_search, Label.pluck(:label_name, :id), include_blank: true %>
     <%= f.submit 'Search' %>
   <% end %>
 
-  <br>
-  <strong><p>--- <%= pluralize(@tasks.count, "task") %> currently registered ---</p></strong>
+  <br><br>
   <table class = "top_index">
     <tr class = "top_menu">
       <th>Name</th>
@@ -28,13 +27,14 @@
         <td class = "content"><%= task.expire_on %></td>
         <td class = "content"><%= task.status %></td>
         <td class = "content"><%= task.priority %></td>
-        <% task.labels.each do |label| %>
-          <td><%= label.label_name %></td>
-        <% end %>
-        <td><%= task.labels.pluck(:label_name) %></td>
         <td><%= link_to 'detail', task_path(task.id), class: 'btn btn-info' %></td>
         <td><%= link_to 'edit', edit_task_path(task.id), class: 'btn btn-info' %></td>
         <td><%= link_to 'delete', task_path(task.id), method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-info' %></td>
+      </tr>
+      <tr class = 'labels'>
+        <% task.labels.each do |label| %>
+          <td class="badge" style="width: 7rem;"><%= label.label_name %></td>
+        <% end %>
       </tr>
     <% end %>
   </table>

@@ -44,8 +44,19 @@ article {
 .content {
   width: 170px;
 }
+
 .space_for_footer {
   margin: 70px;
+}
+.labels {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 30px;
+}
+
+.badge {
+  margin-left: 10px;
+  background-color: purple;
 }
 
 footer {

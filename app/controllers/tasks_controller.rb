@@ -1,5 +1,4 @@
 class TasksController < ApplicationController
-  # skip_before_action :login_required, only [:]
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -13,13 +12,13 @@ class TasksController < ApplicationController
         @tasks = @tasks.by_status(params[:status_search])
       end
     elsif params[:sort_expired]
-      @tasks = @tasks.order(expire_on: :desc)
+      @tasks = @tasks.by_expired
     elsif params[:sort_priority]
-      @tasks = @tasks.order(priority: :asc)
-    elsif params[:label_id].present?
-      @tasks = @tasks.joins(:labellings).where(labellings: { label_id: params[:label_id] })
+      @tasks = @tasks.by_priority
+    elsif params[:label_search].present?
+      @tasks = @tasks.by_label(params[:label_search])
     else
-      @tasks = @tasks.order(created_at: :desc)
+      @tasks = @tasks.by_created
     end
     @tasks = @tasks.page(params[:page]).per(5)
   end
