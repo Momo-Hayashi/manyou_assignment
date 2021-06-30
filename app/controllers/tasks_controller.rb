@@ -16,7 +16,7 @@ class TasksController < ApplicationController
       @tasks = @tasks.order(expire_on: :desc)
     elsif params[:sort_priority]
       @tasks = @tasks.order(priority: :asc)
-    elsif params[:label_id]
+    elsif params[:label_id].present?
       @tasks = @tasks.joins(:labellings).where(labellings: { label_id: params[:label_id] })
     else
       @tasks = @tasks.order(created_at: :desc)

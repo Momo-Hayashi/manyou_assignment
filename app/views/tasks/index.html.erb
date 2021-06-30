@@ -11,7 +11,7 @@
   <% end %>
 
   <br>
-  <p><%= @tasks.count %>件のタスクが登録されています。</p>
+  <strong><p>--- <%= pluralize(@tasks.count, "task") %> currently registered ---</p></strong>
   <table class = "top_index">
     <tr class = "top_menu">
       <th>Name</th>
@@ -19,6 +19,7 @@
       <th><%= link_to "Deadline▼", tasks_path(sort_expired: "true") %></th>
       <th>Status</th>
       <th><%= link_to "Priority▼", tasks_path(sort_priority: "true") %></th>
+      <th>Labels</th>
     </tr>
     <% @tasks.each do |task| %>
       <tr class ="task_row">
@@ -30,6 +31,7 @@
         <% task.labels.each do |label| %>
           <td><%= label.label_name %></td>
         <% end %>
+        <td class = "content"><%= task.labels.pluck(:label_name) %></td>
         <td><%= link_to 'detail', task_path(task.id), class: 'btn btn-info' %></td>
         <td><%= link_to 'edit', edit_task_path(task.id), class: 'btn btn-info' %></td>
         <td><%= link_to 'delete', task_path(task.id), method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-info' %></td>
