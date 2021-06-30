@@ -1,5 +1,4 @@
 FactoryBot.define do
-  
   factory :task do
     name { 'task1' }
     detail { 'test1' }
@@ -8,7 +7,6 @@ FactoryBot.define do
     priority { '中' }
     association :user
   end
-
   factory :second_task, class: Task do
     name { 'task2' }
     detail { 'test2' }
@@ -17,7 +15,6 @@ FactoryBot.define do
     priority { '高' }
     association :user
   end
-
   factory :third_task, class: Task do
     name { 'task1' }
     detail { 'test3' }

@@ -5,6 +5,8 @@
     <%= f.text_field :name_search %>
     <%= f.label :Status %>
     <%= f.select :status_search, Task.statuses.keys.to_a {}, include_blank: true %>
+    <%= f.label :'Label Name' %>
+    <%= f.select :label_id, Label.pluck(:label_name, :id), include_blank: true %>
     <%= f.submit 'Search' %>
   <% end %>
 

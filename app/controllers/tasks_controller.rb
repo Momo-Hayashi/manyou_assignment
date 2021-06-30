@@ -16,6 +16,8 @@ class TasksController < ApplicationController
       @tasks = @tasks.order(expire_on: :desc)
     elsif params[:sort_priority]
       @tasks = @tasks.order(priority: :asc)
+    elsif params[:label_id]
+      @tasks = @tasks.joins(:labellings).where(labellings: { label_id: params[:label_id] })
     else
       @tasks = @tasks.order(created_at: :desc)
     end
@@ -54,7 +56,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:name, :detail, :id, :expire_on, :status, :priority, { label_ids: [] } )
+    params.require(:task).permit(:name, :detail, :id, :expire_on, :status, :priority, {label_ids: [] } )
   end
 
   def set_task
