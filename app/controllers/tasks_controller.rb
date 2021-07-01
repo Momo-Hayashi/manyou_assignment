@@ -1,5 +1,4 @@
 class TasksController < ApplicationController
-  # skip_before_action :login_required, only [:]
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -13,11 +12,13 @@ class TasksController < ApplicationController
         @tasks = @tasks.by_status(params[:status_search])
       end
     elsif params[:sort_expired]
-      @tasks = @tasks.order(expire_on: :desc)
+      @tasks = @tasks.by_expired
     elsif params[:sort_priority]
-      @tasks = @tasks.order(priority: :asc)
+      @tasks = @tasks.by_priority
+    elsif params[:label_search].present?
+      @tasks = @tasks.by_label(params[:label_search])
     else
-      @tasks = @tasks.order(created_at: :desc)
+      @tasks = @tasks.by_created
     end
     @tasks = @tasks.page(params[:page]).per(5)
   end
@@ -29,21 +30,19 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.build(task_params)
     if @task.save
-      redirect_to tasks_path, notice: "Taskを作成しました！"
+      redirect_to tasks_path, notice: "Succesfully created the task!"
     else
       render :new
     end
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @task.update(task_params)
-      redirect_to tasks_path, notice: "更新しました！"
+      redirect_to tasks_path, notice: "Succesfully updated the task!"
     else
       render :edit
     end
@@ -51,12 +50,12 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to tasks_path, notice: "削除しました！"
+    redirect_to tasks_path, notice: "Succesfully deleted the task!"
   end
 
   private
   def task_params
-    params.require(:task).permit(:name, :detail, :id, :expire_on, :status, :priority)
+    params.require(:task).permit(:name, :detail, :id, :expire_on, :status, :priority, {label_ids: [] } )
   end
 
   def set_task

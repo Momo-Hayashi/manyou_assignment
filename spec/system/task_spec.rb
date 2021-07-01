@@ -20,7 +20,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in 'task_detail', with: 'test_test_test'
         fill_in 'task_expire_on', with: '002021/10/08'
         select '着手中', from: 'task[status]'
-        click_on '登録する'
+        find(:xpath, '/html/body/form/article/input').click
         visit tasks_path
         expect(page).to have_content('test_test_test').and have_content('2021-10-08').and have_content('着手中')
       end
@@ -77,7 +77,7 @@ RSpec.describe 'タスク管理機能', type: :system do
     context 'ステータスで検索した場合' do
       it 'ステータスに一致したタスク一覧が表示される' do
         select '完了', from: 'status_search'
-        click_on 'Search'
+        find(:xpath, '/html/body/article/form/input[3]').click
         sleep(0.1)
         expect(page).to have_content 'task2'
       end

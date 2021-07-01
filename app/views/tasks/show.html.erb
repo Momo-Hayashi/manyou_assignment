@@ -1,10 +1,17 @@
 <h1>Task detail!</h1>
 <article>
-  <p>Name：<%= @task.name %></p>
-  <p>Detail：<%= @task.detail %></p>
-  <p>Deadline：<%= @task.expire_on %></p>
-  <p>Status：<%= @task.status %></p>
-  <p>Priority：<%= @task.priority %></p>
+  <div>
+    <p><strong>Task Name：</strong><%= @task.name %></p>
+    <p><strong>Detail：</strong><%= @task.detail %></p>
+    <p><strong>Deadline：</strong><%= @task.expire_on %></p>
+    <p><strong>Status：</strong><%= @task.status %></p>
+    <p><strong>Priority：</strong><%= @task.priority %></p>
+    <p><strong>Labels：</strong></p>
+    <% @task.labels.each do |label| %>
+      <%= label.label_name %>,
+    <% end %>
+  </div>
+<br>
   <%= link_to 'edit', edit_task_path, class: 'btn btn-info' %>
   <%= link_to 'Back to Home', tasks_path, class: 'btn btn-info' %>
 </article>
