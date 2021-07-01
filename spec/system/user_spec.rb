@@ -98,7 +98,7 @@ RSpec.describe 'ユーザー管理機能', type: :system do
       it 'ユーザの削除をできる' do
         find(:xpath, '/html/body/article/table/tbody/tr[2]/td[7]/a').click
         page.driver.browser.switch_to.alert.accept
-        sleep(0.1)
+        sleep(0.2)
         expect(page).to have_content 'Successfully deleted the user'
         expect(page).not_to have_content '一般ユーザー'
       end
@@ -114,7 +114,7 @@ RSpec.describe 'ユーザー管理機能', type: :system do
         sleep(0.1)
         visit admin_users_path
         sleep(0.1)
-        expect(page).to have_content('Not authorised to access the page').and have_content('件のタスクが登録されています。')
+        expect(page).to have_content 'Not authorised to access the page'
       end
     end
 
